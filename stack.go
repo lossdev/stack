@@ -1,5 +1,10 @@
-// Package stack provides a generic, thread safe API to
-// manipulate user defined stack objects.
+// Package stack aims to provide a fast, simple, thread safe, and generic golang stack library
+// to the public. It uses as few linking libraries as possible, and the ones it does are
+// common standard libraries for a smaller code footprint and greater performance.
+
+// Each Stack is generically compatible, meaning that any data can be added and retrieved to/from a Stack.
+// Locks are also used on Stack objects when modifying the Stack through using the Pop or Push methods, so
+// that Stack objects are thread safe.
 package stack
 
 // Minimal imports are used, and those that are used are
