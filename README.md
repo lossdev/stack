@@ -1,5 +1,5 @@
 # stack
-[![GoDoc](https://pkg.go.dev/github.com/bmw417/stack)]
+[![GoDoc](https://pkg.go.dev/github.com/bmw417/stack?status.png)](https://pkg.go.dev/github.com/bmw417/stack)
 Lightweight, Simple, Quick, Thread-Safe Golang Stack Implementation
 
 
