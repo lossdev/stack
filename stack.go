@@ -71,5 +71,7 @@ func (s *Stack) Size() int {
 
 // Drain removes all elements that are currently in the stack.
 func (s *Stack) Drain() {
+	s.lock.Lock()
+	defer s.lock.Unlock()
 	s.member = nil
 }
