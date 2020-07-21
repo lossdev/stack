@@ -79,7 +79,7 @@ func main() {
 	}
 	fmt.Println("Peek: " + val.(string))
 	s.Drain()
-	val, err = s.Peek()
+	_, err = s.Peek()
 	if err != nil {
 		log.Println(err)
 	}
