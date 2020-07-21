@@ -32,5 +32,3 @@ Locks are also used on Stack objects when modifying the Stack through using the 
 that Stack objects are thread safe.
 
 */
-
-package stack
