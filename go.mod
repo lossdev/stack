@@ -1,3 +1,3 @@
-module github.com/lossdev/stack
+module stack
 
-go 1.13
+go 1.14
