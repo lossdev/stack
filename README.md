@@ -1,5 +1,6 @@
 # stack
 [![GoDoc](https://godoc.org/github.com/bmw417/stack?status.png)](http://godoc.org/github.com/bmw417/stack)
+[![Go Report Card](https://goreportcard.com/badge/github.com/bmw417/stack)](https://goreportcard.com/report/github.com/bmw417/stack)
 
 Lightweight, Simple, Quick, Thread-Safe Golang Stack Implementation
 
