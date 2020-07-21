@@ -24,7 +24,7 @@
 /*
 
 Package stack aims to provide a fast, simple, thread safe, and generic golang stack library
-to the public. It uses as few linking libraries as possible, and the ones it does are 
+to the public. It uses as few linking libraries as possible, and the ones it does are
 common standard libraries for a smaller code footprint and greater performance.
 
 Each Stack is generically compatible, meaning that any data can be added and retrieved to/from a Stack.
