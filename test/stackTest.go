@@ -5,7 +5,7 @@ import (
 	"log"
 	"strconv"
 
-	"github.com/bmw417/stack"
+	"github.com/lossdev/stack"
 )
 
 func main() {

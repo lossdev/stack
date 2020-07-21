@@ -1,3 +1,3 @@
-module github.com/bmw417/stack
+module github.com/lossdev/stack
 
 go 1.13
