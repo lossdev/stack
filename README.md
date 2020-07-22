@@ -19,16 +19,16 @@ go get -d -v github.com/lossdev/stack
 
 ## Example
 
-A copy of this file is contained in the `test` directory. Note that since this library uses generics, an explicit type assertion is required.
-
 ``` Go
 package main
+
 import (
 	"fmt"
 	"log"
 	"strconv"
 	"github.com/lossdev/stack"
 )
+
 func main() {
 	s := stack.NewStack()
 	s.Push("foo")
