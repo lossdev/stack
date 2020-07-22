@@ -1,6 +1,8 @@
 # stack
+
 [![GoDoc](https://godoc.org/github.com/lossdev/stack?status.png)](http://godoc.org/github.com/lossdev/stack)
 [![Go Report Card](https://goreportcard.com/badge/github.com/lossdev/stack)](https://goreportcard.com/report/github.com/lossdev/stack)
+[![Go Coverage](https://codecov.io/github/lossdev/stack/coverage.svg)](https://codecov.io/github/lossdev/stack/)
 
 Lightweight, Simple, Quick, Thread-Safe Golang Stack Implementation
 
