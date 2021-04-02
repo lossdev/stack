@@ -11,27 +11,41 @@ package stack
 import (
 	// Used for throwing errors
 	"errors"
+	// Used to get variable types as string representation
+	"reflect"
 	// Used to lock and unlock the stack when attempting to modify it
 	"sync"
 )
 
+const (
+	Int = iota
+	Float
+	String
+	Bool
+)
+
 // Stack stores the lock and data members of the stack.
 type Stack struct {
-	lock   sync.Mutex
-	member []interface{}
+	lock     sync.Mutex
+	member   []interface{}
+	dataType int
 }
 
 // NewStack is the constructor method that initializes a new, empty stack and returns it.
-func NewStack() *Stack {
-	return &Stack{member: make([]interface{}, 0)}
+func NewStack(dataType int) *Stack {
+	return &Stack{member: make([]interface{}, 0), dataType: dataType}
 }
 
 // Push will add a new value to the top of the stack.
-func (s *Stack) Push(val interface{}) {
+func (s *Stack) Push(val interface{}) error {
 	s.lock.Lock()
 	defer s.lock.Unlock()
+	if err := checkType(s, val); err != nil {
+		return err
+	}
 
 	s.member = append(s.member, val)
+	return nil
 }
 
 // Pop attempts to remove a value from the top of the stack. It will return an error if the stack is empty, or
@@ -42,7 +56,7 @@ func (s *Stack) Pop() (interface{}, error) {
 
 	l := len(s.member)
 	if l == 0 {
-		return nil, errors.New("Pop from Empty Stack")
+		return nil, errors.New("Pop(): Attempted pop from empty stack")
 	}
 
 	retVal := s.member[l-1]
@@ -55,14 +69,14 @@ func (s *Stack) Pop() (interface{}, error) {
 func (s *Stack) Peek() (interface{}, error) {
 	l := len(s.member)
 	if l == 0 {
-		return nil, errors.New("Peek from Empty Stack")
+		return nil, errors.New("Peek(): Attempted peek from empty stack")
 	}
 	retVal := s.member[l-1]
 	return retVal, nil
 }
 
 // Size returns the current size of the stack. If the stack is empty, it will simply return
-// 0, not an error.
+// 0, not an error
 func (s *Stack) Size() int {
 	l := len(s.member)
 	return l
@@ -73,4 +87,72 @@ func (s *Stack) Drain() {
 	s.lock.Lock()
 	defer s.lock.Unlock()
 	s.member = nil
+}
+
+// checkType checks an incoming member value from Push() and
+// validates if it matches the declared type from NewStack().
+// returns an error if the types do not match
+func checkType(s *Stack, member interface{}) error {
+	switch member.(type) {
+	case int:
+		if s.dataType != Int {
+			return errors.New("Push(): expected int, but received " + reflect.TypeOf(member).String())
+		}
+	case float64:
+		if s.dataType != Float {
+			return errors.New("Push(): expected float64, but received " + reflect.TypeOf(member).String())
+		}
+	case string:
+		if s.dataType != String {
+			return errors.New("Push(): expected string, but received " + reflect.TypeOf(member).String())
+		}
+	case bool:
+		if s.dataType != Bool {
+			return errors.New("Push(): expected bool, but received " + reflect.TypeOf(member).String())
+		}
+	default:
+		return errors.New("Push(): unknown data type received")
+	}
+	return nil
+}
+
+// ToInt is intended to be a wrapping function around Pop() or Peek()
+// so that the int variable can be explicitely returned to the user.
+// Eliminates the need for a user side type assertion
+func ToInt(memberReturned interface{}, err error) (int, error) {
+	if err != nil {
+		return 0, err
+	} else {
+		return memberReturned.(int), err
+	}
+}
+
+// ToFloat behaves equivalently to ToInt, but operates with
+// float64 types
+func ToFloat(memberReturned interface{}, err error) (float64, error) {
+	if err != nil {
+		return 0.0, err
+	} else {
+		return memberReturned.(float64), err
+	}
+}
+
+// ToString behaves equivalently to ToInt, but operates with
+// string types
+func ToString(memberReturned interface{}, err error) (string, error) {
+	if err != nil {
+		return "", err
+	} else {
+		return memberReturned.(string), err
+	}
+}
+
+// ToBool behaves equivalently to ToInt, but operates with
+// bool types
+func ToBool(memberReturned interface{}, err error) (bool, error) {
+	if err != nil {
+		return false, err
+	} else {
+		return memberReturned.(bool), err
+	}
 }
