@@ -4,7 +4,6 @@
 // when retrieving their values, however, primitive Stacks include wrapping functions that will
 // easily return the intended types for you. This way, completeness and user friendliness
 // (through avoiding user-side type assertions when possible) is achieved.
-
 package stack
 
 // Minimal imports are used, and those that are used are
@@ -19,9 +18,13 @@ import (
 )
 
 const (
+	// Int : stack.Int const represents integer stacks
 	Int = iota
+	// Float : stack.Float const represents float stacks
 	Float
+	// String : stack.String const represents string stacks
 	String
+	// Bool : stack.Bool const represent boolean stacks
 	Bool
 )
 
@@ -151,9 +154,8 @@ func checkType(s *Stack, member interface{}) error {
 func ToInt(memberReturned interface{}, err error) (int, error) {
 	if err != nil {
 		return 0, err
-	} else {
-		return memberReturned.(int), err
 	}
+	return memberReturned.(int), err
 }
 
 // ToFloat behaves equivalently to ToInt, but operates with
@@ -161,9 +163,8 @@ func ToInt(memberReturned interface{}, err error) (int, error) {
 func ToFloat(memberReturned interface{}, err error) (float64, error) {
 	if err != nil {
 		return 0.0, err
-	} else {
-		return memberReturned.(float64), err
 	}
+	return memberReturned.(float64), err
 }
 
 // ToString behaves equivalently to ToInt, but operates with
@@ -171,9 +172,8 @@ func ToFloat(memberReturned interface{}, err error) (float64, error) {
 func ToString(memberReturned interface{}, err error) (string, error) {
 	if err != nil {
 		return "", err
-	} else {
-		return memberReturned.(string), err
 	}
+	return memberReturned.(string), err
 }
 
 // ToBool behaves equivalently to ToInt, but operates with
@@ -181,7 +181,6 @@ func ToString(memberReturned interface{}, err error) (string, error) {
 func ToBool(memberReturned interface{}, err error) (bool, error) {
 	if err != nil {
 		return false, err
-	} else {
-		return memberReturned.(bool), err
 	}
+	return memberReturned.(bool), err
 }
