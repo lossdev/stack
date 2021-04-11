@@ -20,15 +20,15 @@ func TestPush(t *testing.T) {
 }
 
 func TestGenericPush(t *testing.T) {
-    gs := NewGenericStack()
-    a := struct {
-        foo string
-        bar int
-    }{
-        foo: "Hello, World!",
-        bar: 4,
-    };
-    gs.Push(a)
+	gs := NewGenericStack()
+	a := struct {
+		foo string
+		bar int
+	}{
+		foo: "Hello, World!",
+		bar: 4,
+	}
+	gs.Push(a)
 }
 
 func TestPop(t *testing.T) {
