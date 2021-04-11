@@ -146,7 +146,7 @@ func checkType(s *Stack, member interface{}) error {
 }
 
 // ToInt is intended to be a wrapping function around Pop() or Peek()
-// so that the int variable can be explicitely returned to the user.
+// so that the int variable can be explicitly returned to the user.
 // Eliminates the need for a user side type assertion
 func ToInt(memberReturned interface{}, err error) (int, error) {
 	if err != nil {
